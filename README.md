@@ -1,7 +1,7 @@
 # Data Cleaner Project
 
 A Python-based application for cleaning, preprocessing, and preparing datasets for analysis or machine learning.  
-Built with **Flask** and **Streamlit** for interactive data cleaning and visualization.
+Built with **Flask** and **Html/CSS(Bootstrap)** for interactive data cleaning and visualization.
 
 ## Features
 - Upload CSV or Excel files
@@ -15,7 +15,7 @@ Built with **Flask** and **Streamlit** for interactive data cleaning and visuali
 ## Tech Stack
 - **Python**
 - **Flask** – backend API for processing data
-- **Streamlit** – interactive user interface
+- **HTML/CSS** – interactive user interface
 - **Pandas** – data manipulation
 - **NumPy** – numerical operations
 - **Matplotlib** & **Seaborn** – visualizations
