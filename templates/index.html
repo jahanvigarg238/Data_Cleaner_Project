@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>🧹 Smart Data Cleaner</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light p-4">
+<div class="container">
+    <h2 class="text-center mb-4">🧹 Smart Data Cleaner</h2>
+
+    <!-- Upload Form -->
+    <form action="/" method="POST" enctype="multipart/form-data" class="mb-4">
+        <div class="mb-3">
+            <input type="file" name="file" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">📤 Upload File</button>
+    </form>
+
+    {% if tables %}
+    <!-- Preview Table -->
+    <div class="card mb-3">
+        <div class="card-header">📄 Data Preview</div>
+        <div class="card-body">{{ tables[0]|safe }}</div>
+    </div>
+
+    <!-- Clean Options -->
+    <form action="/clean" method="POST" class="mb-4">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="remove_duplicates" id="remove_duplicates">
+            <label class="form-check-label" for="remove_duplicates">Remove Duplicates</label>
+        </div>
+        <div class="mt-3 mb-3">
+            <label>Fill Missing Values With:</label>
+            <select class="form-select" name="missing_option">
+                <option value="mean">Mean</option>
+                <option value="median">Median</option>
+                <option value="zero">Zero</option>
+                <option value="missing">"Missing"</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-success">🧼 Clean and Analyze</button>
+    </form>
+    {% endif %}
+
+    {% if stats %}
+    <div class="card mb-3">
+        <div class="card-header">📊 Summary Statistics</div>
+        <div class="card-body">{{ stats|safe }}</div>
+    </div>
+    {% endif %}
+
+    {% if graphs %}
+    <div class="card mb-3">
+        <div class="card-header">📈 Graphical Insights</div>
+        <div class="card-body">
+            {% for graph in graphs %}
+                <img src="{{ url_for('static', filename='graphs/' + graph) }}" class="img-fluid mb-3">
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+    {% if download_link %}
+    <a href="/download" class="btn btn-outline-primary">⬇️ Download Cleaned File</a>
+    {% endif %}
+
+    {% if msg %}
+    <div class="alert alert-info mt-3">{{ msg }}</div>
+    {% endif %}
+</div>
+</body>
+</html>
+
